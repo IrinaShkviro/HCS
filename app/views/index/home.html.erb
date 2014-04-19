@@ -1,0 +1,47 @@
+<% provide(:title, 'Home') %>
+<div class="center hero-unit">
+	<h1>Web Homework</h1>
+	<h2>
+		This is the home page for the web homework application.
+	</h2>
+<%=form_for @datafile, :html => {:multipart => true} do |s|%>
+
+  <div class="field">
+
+  	<%=s.label :file %><br />
+
+  	<%=s.file_field :dfile%>
+  	<p><%= s.submit( 'upload' ) %></p>
+  </div>
+
+<% end %>
+
+<%= link_to 'Add task', new_task_path %>
+
+<table border="1">
+<tr>
+    <td>Surname</td>
+    <td>Name</td>
+    <td>Patronymic</td>
+    <% @tasks.each do |s| %>
+         <td><%= (s.homework + (s.number/10))%></td> 
+    <% end %>
+</tr>
+
+<% @users.each do |s| %>
+  <tr>
+    <td><%= s.surname%></td>
+    <td><%= s.name%></td>
+    <td><%= s.patronymic%></td>
+
+    <% @tasks.each do |t| %>
+        <td><%= Unit.where(surname: s.surname, homework: t.homework, number: t.number).take.state %></td>
+    <% end %>
+
+      <td><%= link_to 'Edit', edit_user_path(s) %></td>
+      <td><%= link_to 'Destroy', user_path(s),
+                   method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+</div>

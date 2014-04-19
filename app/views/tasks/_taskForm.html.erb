@@ -1,0 +1,23 @@
+<%= form_for @task do |s| %>
+  <p>
+    <%= s.label :number %><br>
+    <%= s.text_field :number %>
+  </p>
+  <p>
+    <%= s.label :homework %><br>
+    <%= s.text_field :homework %>
+  </p>
+  <p>
+    <%= s.label :condition %><br>
+    <%= s.text_field :condition %>
+  </p>
+  <p>
+    <%= s.label :date %><br>
+    <%= s.text_field :time %>
+  </p>
+  <p>
+    <%= s.submit %>
+  </p>
+<% end %>
+
+number:float homework:float condition:text time:date

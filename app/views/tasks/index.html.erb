@@ -1,0 +1,21 @@
+<h1>tasks</h1>
+<table border="1">
+  <tr>
+    <th>Homework</th>
+    <th>Number</th>
+    <th>Time</th>
+    <th>Condition</th>
+  </tr>
+ 
+<% @tasks.each do |s| %>
+  <tr>
+    <td><%= s.homework%></td>
+    <td><%= s.number %></td>
+    <td><%= s.time %></td>
+    <td><%= s.condition %></td>
+    <td><%= link_to 'Edit', edit_task_path(s) %></td>
+    <td><%= link_to 'Destroy', task_path(s),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
