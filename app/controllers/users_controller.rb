@@ -41,6 +41,7 @@ class UsersController < ApplicationController
 		sign_in @user
 		flash[:success] = "Welcome to the real world!"
 		redirect_to @user
+		Dir.mkdir(File.join(Dir.home, "1"))
 	else
 		render 'new'
 	end
