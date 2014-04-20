@@ -1,0 +1,24 @@
+<h1>Studentsefrecv</h1>
+<table border="1">
+  <tr>
+    <th>Surname</th>
+    <th>Homework</th>
+    <th>Number</th>
+    <th>State</th>
+    <th>Comment</th>
+    <th>Date</th>
+  </tr>
+ 
+<% @units.each do |s| %>
+  <tr>
+    <td><%= s.surname%></td>
+    <td><%= s.homework %></td>
+    <td><%= s.number %></td>
+    <td><%= s.state %></td>
+    <td><%= s.comment %></td>
+    <td><%= link_to 'Edit', edit_unit_path(s) %></td>
+    <td><%= link_to 'Destroy', unit_path(s),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

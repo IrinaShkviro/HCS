@@ -35,7 +35,7 @@
     <td><%= s.patronymic%></td>
 
     <% @tasks.each do |t| %>
-        <td><%= Unit.where(surname: s.surname, homework: t.homework, number: t.number).take.state %></td>
+        <td><%=  %></td> -->
     <% end %>
 
       <td><%= link_to 'Edit', edit_user_path(s) %></td>
