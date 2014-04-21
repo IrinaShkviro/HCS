@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 		sign_in @user
 		flash[:success] = "Welcome to the real world!"
 		redirect_to @user
-		Dir.mkdir(File.join(Dir.home, "1"))
+		Dir.mkdir( "public/uploads/#{@user.name} #{@user.surname}")
 	else
 		render 'new'
 	end
