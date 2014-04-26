@@ -1,0 +1,25 @@
+<%= form_for @unit do |s| %>
+  <p>
+    <%= s.label :surname %><br>
+    <%= s.text_field :surname %>
+  </p>
+  <p>
+    <%= s.label :homework %><br>
+    <%= s.text_field :homework %>
+  </p>
+  <p>
+    <%= s.label :number %><br>
+    <%= s.text_field :number %>
+  </p>
+  <p>
+    <%= s.label :state %><br>
+    <%= s.text_field :state %>
+  </p>
+  <p>
+    <%= s.label :comment %><br>
+    <%= s.text_field :comment %>
+  </p>
+  <p>
+    <%= s.submit %>
+  </p>
+<% end %>

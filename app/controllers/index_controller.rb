@@ -4,6 +4,7 @@ class IndexController < ApplicationController
 	  @users = User.all
        	  @tasks = Task.all
        	  @datafile = Datafile.new
+          @unit = Unit.new
 	end
 
 	def about
