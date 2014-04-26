@@ -24,7 +24,7 @@
     <td>Name</td>
     <td>Patronymic</td>
     <% @tasks.each do |s| %>
-         <td><%= (s.homework + (s.number/10))%></td> 
+         <td><%= (s.number) %></td> 
     <% end %>
 </tr>
 
@@ -35,7 +35,7 @@
     <td><%= s.patronymic%></td>
 
     <% @tasks.each do |t| %>
-        <td><%=  %></td> -->
+        <td><%= Unit.findUnit(s.surname, t.homework, t.number) %></td>
     <% end %>
 
       <td><%= link_to 'Edit', edit_user_path(s) %></td>

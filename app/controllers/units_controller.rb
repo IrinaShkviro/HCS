@@ -1,4 +1,5 @@
 class UnitsController < ApplicationController
+   helper_method :findUnit
    def new
       @unit = Unit.new
    end
@@ -21,12 +22,8 @@ class UnitsController < ApplicationController
       @unit = Unit.find(params[:id])
    end
 
-#   def findUnit
-      #if (Unit.where(surname: s.surname, homework: t.homework, number: t.number).take.state.exists?)
-       #  @unit = Unit.where(surname: s.surname, homework: t.homework, number: t.number).take.statenit
-      #else 
-       #  @unit = Unit.new(
-#   end
+   def self.findUnit(searched_surname, searched_homework, searched_number)
+   end
 
    def destroy
        @unit = Unit.find(params[:id])
