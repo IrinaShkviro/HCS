@@ -4,19 +4,6 @@
 	<h2>
 		This is the home page for the web homework application.
 	</h2>
-<%=form_for @datafile, :html => {:multipart => true} do |s|%>
-
-  <div class="field">
-
-  	<%=s.label :file %><br />
-
-  	<%=s.file_field :dfile%>
-  	<p><%= s.submit( 'upload' ) %></p>
-  </div>
-
-<% end %>
-
-<%= link_to 'Add task', new_task_path %>
 
 <table border="1">
 <tr>
@@ -35,7 +22,7 @@
     <td><%= s.patronymic%></td>
 
     <% @tasks.each do |t| %>
-        <td><%= Unit.findUnit(s.surname, t.homework, t.number) %></td>
+        <td><%= UnitsController.findUnit(s.surname, t.homework, t.number) %></td>
     <% end %>
 
       <td><%= link_to 'Edit', edit_user_path(s) %></td>
