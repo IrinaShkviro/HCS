@@ -6,6 +6,19 @@
 	  <%= gravatar_for @user %>
 	  <%= @user.name %>
 	</h1>
+
+	<%= link_to 'Add task', new_task_path %>
+	<%=form_for @datafile, :html => {:multipart => true} do |s|%>
+
+	  <div class="field">
+
+	  	<%=s.label :file %><br />
+
+	  	<%=s.file_field :dfile%>
+  		<p><%= s.submit( 'upload' ) %></p>
+  	  </div>
+
+<% end %>
     </section>
   </aside>
 </div>
