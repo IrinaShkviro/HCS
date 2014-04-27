@@ -3,7 +3,6 @@ Hcs::Application.routes.draw do
   resources :units
   resources :tasks
   resources :students
-  resources :contacts
   resources :datafiles
   resources :sessions, only: [:new, :create, :destroy]
 
