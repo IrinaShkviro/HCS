@@ -4,29 +4,29 @@ class UsersController < ApplicationController
    before_action :admin_user,     only: :destroy
 
   def index
-	  @users = User.all
-	  @users30 = User.paginate(page: params[:page])
+    @users = User.all
+    @users30 = User.paginate(page: params[:page])
   end
 
   def show
-	@user = User.find(params[:id])
-	@datafile = Datafile.new
+    @user = User.find(params[:id])
+    @datafile = Datafile.new
   end
 
   def index
-	@users = User.all
+    @users = User.all
   end
 
   def new
-	@user = User.new
+    @user = User.new
   end
 
   def edit
-	  @user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update
-     @user = User.find(params[:id])
+    @user = User.find(params[:id])
 
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 		sign_in @user
 		flash[:success] = "Welcome to the real world!"
 		redirect_to @user
-		Dir.mkdir( "public/uploads/#{@user.name} #{@user.surname}")
+                Dir.mkdir("#{Dir.pwd}/public/uploads/ #{@user.name} #{@user.surname}")
 	else
 		render 'new'
 	end
