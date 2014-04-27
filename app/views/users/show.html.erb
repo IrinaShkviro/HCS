@@ -11,10 +11,9 @@
 	<%=form_for @datafile, :html => {:multipart => true} do |s|%>
 
 	  <div class="field">
-
 	  	<%=s.label :file %><br />
-
-	  	<%=s.file_field :dfile%>
+	  	<%=s.file_field :dfile %>
+                <%=s.text_field :comment %>
   		<p><%= s.submit( 'upload' ) %></p>
   	  </div>
 
