@@ -2,7 +2,7 @@
 <div class="center hero-unit">
 	<h1>Web Homework</h1>
 	<h2>
-		This is the home page for the web homework application.
+	    This is the home page for the web homework application.
 	</h2>
 <table border="1">
    <tr>
@@ -28,3 +28,10 @@
    </tr>
    <% end %>
 </table>
+
+<% for i in 1..IndexController.hometaskCount %>
+     <h2> Hometask <%= i %></h2>
+     <% Task.where(homework: i).each do |s| %>
+          <%= s.number.to_s + '. ' + s.condition %> </br>
+     <% end %>
+<% end %>
