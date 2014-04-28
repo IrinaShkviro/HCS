@@ -16,5 +16,7 @@ class IndexController < ApplicationController
 	def contact
 	end
 
+        def managment
+        end
 
 end
