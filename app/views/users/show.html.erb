@@ -7,13 +7,11 @@
 	  <%= @user.name %>
 	</h1>
 
-	<%= link_to 'Add task', new_task_path %>
 	<%=form_for @datafile, :html => {:multipart => true} do |s|%>
 
 	  <div class="field">
-	  	<%=s.label :file %><br />
+	  	<%=s.label :'Add_file: ' %>
 	  	<%=s.file_field :dfile %>
-                <%=s.text_field :comment %>
   		<p><%= s.submit( 'upload' ) %></p>
   	  </div>
 
