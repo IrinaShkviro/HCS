@@ -7,7 +7,7 @@
 <table border="1">
    <tr>
        <td> </td>
-       <% for i in 1..IndexController.hometaskCount %>
+       <% for i in IndexController.hometasksArray %>
          <td colspan="<%= IndexController.taskCountInHometask(i) %>">Hometask <%= i %></td>
        <% end %>
    </tr>
@@ -21,15 +21,14 @@
    <tr>
         <td><%= s.surname + ' ' + s.name + ' ' + s.patronymic%></td>
         <% @tasks.each do |t| %>
-             <% @unit = UnitsController.findUnit(s.surname, t.homework, t.number)%>
-             <td><%= UnitsController.findUnitState(s.surname, t.homework, t.number)%></td> 
+             <td><%= UnitsController.findUnitState(s.email, t.homework, t.number)%></td> 
         <% end %>
 
    </tr>
    <% end %>
 </table>
 
-<% for i in 1..IndexController.hometaskCount %>
+<% for i in IndexController.hometasksArray %>
      <h2> Hometask <%= i %></h2>
      <% Task.where(homework: i).each do |s| %>
           <%= s.number.to_s + '. ' + s.condition %> </br>
