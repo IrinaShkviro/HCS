@@ -26,17 +26,17 @@ class UnitsController < ApplicationController
       @unit = Unit.find(params[:id])
    end
 
-   def self.findUnit(searched_surname, searched_homework, searched_number)
-	if (Unit.where(surname: searched_surname, homework: searched_homework, number: searched_number).take)
-       		return Unit.where(surname: searched_surname, homework: searched_homework, number: searched_number).take
+   def self.findUnit(searched_email, searched_homework, searched_number)
+	if (Unit.where(email: searched_email, homework: searched_homework, number: searched_number).take)
+       		return Unit.where(email: searched_email, homework: searched_homework, number: searched_number).take
 	else 
 		return ''
 	end
    end
 
-   def self.findUnitState(searched_surname, searched_homework, searched_number)
-	if (Unit.where(surname: searched_surname, homework: searched_homework, number: searched_number).take)
-       		return Unit.where(surname: searched_surname, homework: searched_homework, number: searched_number).take.state
+   def self.findUnitState(searched_email, searched_homework, searched_number)
+	if (Unit.where(email: searched_email, homework: searched_homework, number: searched_number).take)
+       		return Unit.where(email: searched_email, homework: searched_homework, number: searched_number).take.state
 	else 
 		return ''
 	end
@@ -61,6 +61,6 @@ class UnitsController < ApplicationController
 
    private
       def unit_params
-          params.require(:unit).permit(:surname, :state, :homework, :number, :comment, :time)
+          params.require(:unit).permit(:email, :state, :homework, :number, :comment)
       end
 end

@@ -1,11 +1,11 @@
 class CreateUnits < ActiveRecord::Migration
   def change
     create_table :units do |t|
-      t.string :surname
-      t.integer :number
+      t.string :email
       t.integer :homework
+      t.integer :number
       t.float :state
-      t.text :comment
+      t.string :comment
 
       t.timestamps
     end

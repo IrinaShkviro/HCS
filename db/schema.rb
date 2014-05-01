@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140420085558) do
+ActiveRecord::Schema.define(version: 20140501074139) do
 
   create_table "datafiles", force: true do |t|
     t.string   "name"
@@ -31,11 +31,11 @@ ActiveRecord::Schema.define(version: 20140420085558) do
   end
 
   create_table "units", force: true do |t|
-    t.string   "surname"
-    t.integer  "number"
+    t.string   "email"
     t.integer  "homework"
+    t.integer  "number"
     t.float    "state"
-    t.text     "comment"
+    t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
