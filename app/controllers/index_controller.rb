@@ -1,6 +1,6 @@
 class IndexController < ApplicationController
         helper_method :taskCountInHometask
-        helper_method :hometaskCount
+        helper_method :hometasksArray
 	def home
 	  @users = User.all
        	  @tasks = Task.all
@@ -25,7 +25,7 @@ class IndexController < ApplicationController
            return Task.where(homework: searched_homework).count
         end
 
-        def self.hometaskCount
+        def self.hometasksArray
            @tasks2 = Task.all
            array = [2]
            @tasks2.each do |t|
@@ -33,7 +33,7 @@ class IndexController < ApplicationController
                    array.push(t.homework)
                end
            end
-           return array.length
+           return array.sort
         end
 
 end
