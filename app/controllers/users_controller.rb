@@ -13,10 +13,6 @@ class UsersController < ApplicationController
     @datafile = Datafile.new
   end
 
-  def index
-    @users = User.all
-  end
-
   def new
     @user = User.new
   end
@@ -42,7 +38,7 @@ class UsersController < ApplicationController
 		sign_in @user
 		flash[:success] = "Welcome to the real world!"
 		redirect_to @user
-                Dir.mkdir("#{Dir.pwd}/public/uploads/ #{@user.name} #{@user.surname}")
+                Dir.mkdir("#{Dir.pwd}/public/uploads/ #{@user.email}")
 	else
 		render 'new'
 	end

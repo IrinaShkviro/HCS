@@ -2,33 +2,36 @@
 <div class="center hero-unit">
 	<h1>Web Homework</h1>
 	<h2>
-		This is the home page for the web homework application.
+	    This is the home page for the web homework application.
 	</h2>
-
 <table border="1">
-<tr>
-    <td>Surname</td>
-    <td>Name</td>
-    <td>Patronymic</td>
-    <% @tasks.each do |s| %>
-         <td><%= (s.number) %></td> 
-    <% end %>
-</tr>
+   <tr>
+       <td> </td>
+       <% for i in 1..IndexController.hometaskCount %>
+         <td colspan="<%= IndexController.taskCountInHometask(i) %>">Hometask <%= i %></td>
+       <% end %>
+   </tr>
+   <tr>
+       <td> </td>
+        <% @tasks.each do |s| %>
+             <td><%= (s.number) %></td> 
+        <% end %>
+   </tr>
+   <% @users.each do |s| %>
+   <tr>
+        <td><%= s.surname + ' ' + s.name + ' ' + s.patronymic%></td>
+        <% @tasks.each do |t| %>
+             <% @unit = UnitsController.findUnit(s.surname, t.homework, t.number)%>
+             <td><%= UnitsController.findUnitState(s.surname, t.homework, t.number)%></td> 
+        <% end %>
 
-<% @users.each do |s| %>
-  <tr>
-    <td><%= s.surname%></td>
-    <td><%= s.name%></td>
-    <td><%= s.patronymic%></td>
-
-    <% @tasks.each do |t| %>
-        <td><%= UnitsController.findUnit(s.surname, t.homework, t.number) %></td>
-    <% end %>
-
-      <td><%= link_to 'Edit', edit_user_path(s) %></td>
-      <td><%= link_to 'Destroy', user_path(s),
-                   method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+   </tr>
+   <% end %>
 </table>
-</div>
+
+<% for i in 1..IndexController.hometaskCount %>
+     <h2> Hometask <%= i %></h2>
+     <% Task.where(homework: i).each do |s| %>
+          <%= s.number.to_s + '. ' + s.condition %> </br>
+     <% end %>
+<% end %>

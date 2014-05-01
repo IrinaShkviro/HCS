@@ -6,7 +6,7 @@ class DatafilesController < ApplicationController
    def create
       @datafile = Datafile.new(datafile_params)
       uploaded_io = params[:datafile][:dfile]
-      File.open(Rails.root.join('public', 'uploads', @datafile.comment, uploaded_io.original_filename), 'wb') do |file|
+      File.open(Rails.root.join('public', 'uploads', current_user.email, uploaded_io.original_filename), 'wb') do |file|
           file.write(uploaded_io.read)
           end
    end
@@ -17,7 +17,7 @@ class DatafilesController < ApplicationController
 
    def upload
       uploaded_io = params[:datafile][:dfile]
-      File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+      File.open(Rails.root.join('public', 'uploads', current_user.email, uploaded_io.original_filename), 'wb') do |file|
       		file.write(uploaded_io.read)
   	 end
    end

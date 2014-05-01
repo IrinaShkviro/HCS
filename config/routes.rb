@@ -14,6 +14,7 @@ Hcs::Application.routes.draw do
   match '/help',    to: 'index#help',    via: 'get'
   match '/about',   to: 'index#about',   via: 'get'
   match '/contact', to: 'index#contact', via: 'get'
+  match '/managment', to: 'index#managment', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

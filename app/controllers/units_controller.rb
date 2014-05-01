@@ -1,11 +1,15 @@
 class UnitsController < ApplicationController
    helper_method :findUnit
+   helper_method :findUnitState
    def new
       @unit = Unit.new
    end
 
    def index
       @units = Unit.all
+   end
+
+   def show
    end
 
    def create
@@ -23,6 +27,14 @@ class UnitsController < ApplicationController
    end
 
    def self.findUnit(searched_surname, searched_homework, searched_number)
+	if (Unit.where(surname: searched_surname, homework: searched_homework, number: searched_number).take)
+       		return Unit.where(surname: searched_surname, homework: searched_homework, number: searched_number).take
+	else 
+		return ''
+	end
+   end
+
+   def self.findUnitState(searched_surname, searched_homework, searched_number)
 	if (Unit.where(surname: searched_surname, homework: searched_homework, number: searched_number).take)
        		return Unit.where(surname: searched_surname, homework: searched_homework, number: searched_number).take.state
 	else 
