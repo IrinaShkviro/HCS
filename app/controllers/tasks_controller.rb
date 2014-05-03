@@ -12,6 +12,10 @@ class TasksController < ApplicationController
 
       if @task.save
           redirect_to @task
+          @users = User.all
+          @users.each do |t|
+             Unit.create email: t.email, homework: @task.homework, number: @task.number
+          end
       else
           render 'new'
       end

@@ -2,7 +2,7 @@ class IndexController < ApplicationController
         helper_method :taskCountInHometask
         helper_method :hometasksArray
 	def home
-	  @users = User.all
+	  @users = User.where(admin: false)
        	  @tasks = Task.all
        	  @datafile = Datafile.new
           @unit = Unit.new
@@ -27,7 +27,7 @@ class IndexController < ApplicationController
 
         def self.hometasksArray
            @tasks2 = Task.all
-           array = [2]
+           array = []
            @tasks2.each do |t|
                if !array.include?(t.homework)
                    array.push(t.homework)

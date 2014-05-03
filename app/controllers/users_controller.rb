@@ -39,6 +39,11 @@ class UsersController < ApplicationController
 		flash[:success] = "Welcome to the real world!"
 		redirect_to @user
                 Dir.mkdir("#{Dir.pwd}/public/uploads/ #{@user.email}")
+                @units = Unit.all
+                @tasks = Task.all
+                @tasks.each do |t|
+                     Unit.create email: @user.email, homework: t.homework, number: t.number
+                end
 	else
 		render 'new'
 	end

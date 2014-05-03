@@ -11,6 +11,7 @@
          <td colspan="<%= IndexController.taskCountInHometask(i) %>">Hometask <%= i %></td>
        <% end %>
    </tr>
+ 
    <tr>
        <td> </td>
         <% @tasks.each do |s| %>
@@ -21,9 +22,8 @@
    <tr>
         <td><%= s.surname + ' ' + s.name + ' ' + s.patronymic%></td>
         <% @tasks.each do |t| %>
-             <td><%= UnitsController.findUnitState(s.email, t.homework, t.number)%></td> 
+             <td><%= UnitsController.findUnitState(s.email, t.homework, t.number) %></td> 
         <% end %>
-
    </tr>
    <% end %>
 </table>
