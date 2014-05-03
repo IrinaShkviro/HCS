@@ -20,9 +20,10 @@
    </tr>
    <% @users.each do |s| %>
    <tr>
-        <td><%= s.surname + ' ' + s.name + ' ' + s.patronymic%></td>
+        <td><%= s.surname + ' ' + s.name + ' ' + s.patronymic %></td>
         <% @tasks.each do |t| %>
-             <td><%= UnitsController.findUnitState(s.email, t.homework, t.number) %></td> 
+             <% @u = Unit.where(email: s.email, homework: t.homework, number: t.number).take %>
+             <td><%= UnitsController.findUnitState(s.email, t.homework, t.number) %> <%= link_to 'edit', edit_unit_path(@u) %> </td> 
         <% end %>
    </tr>
    <% end %>
