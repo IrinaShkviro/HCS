@@ -55,6 +55,7 @@ class UsersController < ApplicationController
           @user.destroy
 	  flash[:success] = "User deleted."
 	  redirect_to users_url
+          Dir.rmdir("#{Dir.pwd}/public/uploads/ #{@user.email}")
   end
 
   private
