@@ -27,6 +27,7 @@ class TasksController < ApplicationController
 
    def destroy
        @task = Task.find(params[:id])
+       Unit.where(number: @task.number, homework: @task.homework).delete_all
        @task.destroy
 
        redirect_to tasks_path

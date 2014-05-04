@@ -8,7 +8,7 @@
    <tr>
        <td> </td>
        <% for i in IndexController.hometasksArray %>
-         <td colspan="<%= IndexController.taskCountInHometask(i) %>">Hometask <%= i %></td>
+         <td colspan="<%= IndexController.taskCountInHometask(i) %>"> Homework <%= i %></td>
        <% end %>
    </tr>
  
@@ -23,7 +23,7 @@
         <td><%= s.surname + ' ' + s.name + ' ' + s.patronymic %></td>
         <% @tasks.each do |t| %>
              <% @u = Unit.where(email: s.email, homework: t.homework, number: t.number).take %>
-             <td><%= UnitsController.findUnitState(s.email, t.homework, t.number) %> <%= link_to 'edit', edit_unit_path(@u) %> </td> 
+             <td><%= UnitsController.findUnitState(s.email, t.homework, t.number) %> <% if signed_in? %>  <% if current_user.admin? %> <%= link_to 'edit', edit_unit_path(@u) %>  <% end %> <% end %></td> 
         <% end %>
    </tr>
    <% end %>
