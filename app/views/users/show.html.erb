@@ -15,7 +15,12 @@
   		<p><%= s.submit( 'upload' ) %></p>
   	  </div>
 
-<% end %>
+        <% end %>
+    <h2> Comments to tasks </h2>
+    <% Unit.where(email: @user.email, state: 0.5).each do |u|%>
+        Homework <%= u.homework%>, task <%= u.number%>: <%= u.comment%></br>
+    <% end %>
+
     </section>
   </aside>
 </div>
