@@ -1,6 +1,6 @@
 <% provide(:title, 'Home') %>
 <div class="center hero-unit">
-	<h1>Web Homework</h1>
+	<h1>Homework Checking System</h1>
 	<h2>
 	    This is the home page for the web homework application.
 	</h2>
@@ -30,7 +30,7 @@
 </table>
 
 <% for i in IndexController.hometasksArray %>
-     <h2> Hometask <%= i %></h2>
+     <h2> Homework <%= i %></h2>
      <% Task.where(homework: i).each do |s| %>
           <%= s.number.to_s + '. ' + s.condition %> </br>
      <% end %>
