@@ -16,9 +16,11 @@
     <td><%= s.number %></td>
     <td><%= s.state %></td>
     <td><%= s.comment %></td>
+    <% if current_user.admin?%>
     <td><%= link_to 'Edit', edit_unit_path(s) %></td>
     <td><%= link_to 'Destroy', unit_path(s),
-                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

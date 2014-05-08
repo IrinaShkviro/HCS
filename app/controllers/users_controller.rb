@@ -35,9 +35,7 @@ class UsersController < ApplicationController
   def create
 	@user = User.new(user_params)
 	if @user.save
-		sign_in @user
-		flash[:success] = "Welcome to the real world!"
-		redirect_to @user
+		flash[:success] = "User has been created successfully"
                 Dir.mkdir("#{Dir.pwd}/public/uploads/#{@user.email}")
                 @units = Unit.all
                 @tasks = Task.all

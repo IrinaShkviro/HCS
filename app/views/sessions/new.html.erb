@@ -13,8 +13,11 @@
 
       <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
     <% end %>
-
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    <% if signed_in?%>
+      <% if current_user.admin? %>
+	    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
