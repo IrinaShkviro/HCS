@@ -1,9 +1,15 @@
 <% provide(:title, 'Home') %>
 <div class="center hero-unit">
 	<h1>Homework Checking System</h1>
-	<h2>
-	    This is the home page for the web homework application.
-	</h2>
+<h4>
+	In the table: </br>
+
+	NULL - no attempts to pass task </br>
+	-1 - task was written off and will be replaced </br>
+	0 - task is not offset </br>
+	0.5 - task is not complete </br>
+	1 - task is offset </br>
+</h4>
 <table border="1">
    <tr>
        <td> </td>
@@ -30,8 +36,10 @@
 </table>
 
 <% for i in IndexController.hometasksArray %>
-     <h2> Homework <%= i %></h2>
+     <h4> Homework <%= i %></h4>
      <% Task.where(homework: i).each do |s| %>
+	<p>
           <%= s.number.to_s + '. ' + s.condition %> </br>
+	</p>
      <% end %>
 <% end %>

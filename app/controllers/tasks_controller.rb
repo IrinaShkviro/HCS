@@ -8,16 +8,18 @@ class TasksController < ApplicationController
    end
 
    def create
-      @task = Task.new(task_params)
+      if signed_in? and current_user.admin?
+	      @task = Task.new(task_params)
 
-      if @task.save
-          redirect_to @task
-          @users = User.all
-          @users.each do |t|
-             Unit.create email: t.email, homework: @task.homework, number: @task.number
-          end
-      else
-          render 'new'
+	      if @task.save
+		  redirect_to tasks_path
+		  @users = User.all
+		  @users.each do |t|
+		     Unit.create email: t.email, homework: @task.homework, number: @task.number
+		  end
+	      else
+		  render 'new'
+	      end
       end
    end
 
@@ -26,20 +28,24 @@ class TasksController < ApplicationController
    end
 
    def destroy
-       @task = Task.find(params[:id])
-       Unit.where(number: @task.number, homework: @task.homework).delete_all
-       @task.destroy
+       if signed_in? and current_user.admin?
+	       @task = Task.find(params[:id])
+	       Unit.where(number: @task.number, homework: @task.homework).delete_all
+	       @task.destroy
 
-       redirect_to tasks_path
+	       redirect_to tasks_path
+      end
    end
 
    def update
-       @task = Task.find(params[:id])
- 
-       if @task.update(task_params)
-           redirect_to @task
-       else
-           render 'edit'
+       if signed_in? and current_user.admin?
+	       @task = Task.find(params[:id])
+	 
+	       if @task.update(task_params)
+		   redirect_to tasks_path
+	       else
+		   render 'edit'
+	       end
        end
    end
 

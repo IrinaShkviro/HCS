@@ -19,6 +19,7 @@ html {
 
 body {
   padding-top: 60px;
+  text-align: left;
 }
 
 section {
@@ -27,6 +28,7 @@ section {
 
 textarea {
   resize: vertical;
+  text-align: left;
 }
 
 .center {
@@ -58,9 +60,26 @@ h2 {
   color: $grayLight;
 }
 
+h3 {
+  font-size: 2.5em;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+h4 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: left;
+  font-weight: normal;
+  color: $grayLight;
+}
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+  text-align: left;
 }
 
 /* header */
@@ -152,7 +171,7 @@ aside {
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  width: 100%;
+  width: 20%;
   margin-bottom: 15px;
   @include box_sizing;
 }

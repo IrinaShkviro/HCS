@@ -13,12 +13,14 @@ class UnitsController < ApplicationController
    end
 
    def create
-      @unit = Unit.new(unit_params)
+      if signed_in? and current_user.admin?
+	      @unit = Unit.new(unit_params)
 
-      if @unit.save
-          redirect_to @unit
-      else
-          render 'new'
+	      if @unit.save
+		  redirect_to root_url
+	      else
+		  render 'new'
+	      end
       end
    end
 
@@ -43,19 +45,23 @@ class UnitsController < ApplicationController
    end
 
    def destroy
-       @unit = Unit.find(params[:id])
-       @unit.destroy
-       system "rake environment tire:import CLASS=Unit FORCE=true"
-        redirect_to units_path
+       if signed_in? and current_user.admin?
+	       @unit = Unit.find(params[:id])
+	       @unit.destroy
+	       system "rake environment tire:import CLASS=Unit FORCE=true"
+		redirect_to root_url
+       end
    end
 
    def update
-       @unit = Unit.find(params[:id])
- 
-       if @unit.update(unit_params)
-           redirect_to @unit
-       else
-           render 'edit'
+       if signed_in? and current_user.admin?
+	       @unit = Unit.find(params[:id])
+	 
+	       if @unit.update(unit_params)
+		   redirect_to root_url
+	       else
+		   render 'edit'
+	       end
        end
    end
 

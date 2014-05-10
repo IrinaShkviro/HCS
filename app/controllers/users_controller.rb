@@ -26,36 +26,39 @@ class UsersController < ApplicationController
 
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
-      redirect_to @user
+      redirect_to users_url
     else
       render 'edit'
     end
   end
 
   def create
-	@user = User.new(user_params)
-	if @user.save
-		sign_in @user
-		flash[:success] = "Welcome to the real world!"
-		redirect_to @user
-                Dir.mkdir("#{Dir.pwd}/public/uploads/#{@user.email}")
-                @units = Unit.all
-                @tasks = Task.all
-                @tasks.each do |t|
-                     Unit.create email: @user.email, homework: t.homework, number: t.number
-                end
-	else
-		render 'new'
-	end
+        if signed_in? and current_user.admin?
+		@user = User.new(user_params)
+		if @user.save
+			flash[:success] = "User has been created successfully"
+			redirect_to users_path
+		        Dir.mkdir("#{Dir.pwd}/public/uploads/#{@user.email}")
+		        @units = Unit.all
+		        @tasks = Task.all
+		        @tasks.each do |t|
+		             Unit.create email: @user.email, homework: t.homework, number: t.number
+		        end
+		else
+			render 'new'
+		end
+        end
   end
 
   def destroy
+      if signed_in? and current_user.admin?
 	  @user = User.find(params[:id])
           Unit.where(email: @user.email).delete_all
           @user.destroy
 	  flash[:success] = "User deleted."
 	  redirect_to users_url
-          Dir.rmdir("#{Dir.pwd}/public/uploads/ #{@user.email}")
+          Dir.rmdir "#{Dir.pwd}/public/uploads/#{@user.email}"
+      end
   end
 
   private
