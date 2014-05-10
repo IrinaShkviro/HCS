@@ -6,6 +6,7 @@
 	  <%= gravatar_for @user %>
 	  <%= @user.name %>
 	</h1>
+        <% if (@user.id == current_user.id) %>
 
 	<%=form_for @datafile, :html => {:multipart => true} do |s|%>
 
@@ -14,6 +15,7 @@
 	  	<%=s.file_field :dfile %>
   		<p><%= s.submit( 'upload' ) %></p>
   	  </div>
+        <% end %>
 
         <% end %>
     <h2> Comments to tasks </h2>

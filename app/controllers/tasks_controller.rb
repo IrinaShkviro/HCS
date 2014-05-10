@@ -40,7 +40,6 @@ class TasksController < ApplicationController
    def update
        if signed_in? and current_user.admin?
 	       @task = Task.find(params[:id])
-	 
 	       if @task.update(task_params)
 		   redirect_to tasks_path
 	       else

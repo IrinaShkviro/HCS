@@ -1,5 +1,7 @@
 <%= form_for @user do |f| %>
 
+<% if signed_in? && current_user.admin? %>
+
 <p>
 <%= f.label :surname %>
 <br>
@@ -29,12 +31,7 @@
 </br>
 </p>
 
-<p>
-<%= f.label :email %>
-<br>
-  <%= f.text_field :email %>
-</br>
-</p>
+<% end %>
 
 <p>
 <%= f.label :phone %>
@@ -43,12 +40,18 @@
 <br>
 </p>
 
+<% if signed_in? && current_user.admin? %>
+
 <p>
 <%= f.label :admin %>
 <br>
   <%= f.text_field :admin %>
 </br>
 </p>
+
+<% end %>
+
+<% if signed_in? && (current_user.id = @user.id) %>
 
 <p>
 <%= f.label :password %>
@@ -63,6 +66,12 @@
 <br>
   <%= f.password_field :password_confirmation %>
 </br>
+</p>
+
+<% end %>
+
+<p>
+<%= f.submit %>
 </p>
 
 <% end %>

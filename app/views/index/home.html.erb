@@ -36,6 +36,7 @@
 </table>
 
 <% for i in IndexController.hometasksArray %>
+     </br>
      <h4> Homework <%= i %></h4>
      <% Task.where(homework: i).each do |s| %>
 	<p>
