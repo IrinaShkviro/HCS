@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def create
-        if signed_in? and current_user.admin?
+        if (signed_in? and current_user.admin?)
 		@user = User.new(user_params)
 		if @user.save
 			flash[:success] = "User has been created successfully"
