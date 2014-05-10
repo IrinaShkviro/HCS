@@ -9,6 +9,8 @@ class DatafilesController < ApplicationController
       File.open(Rails.root.join('public', 'uploads', current_user.email, uploaded_io.original_filename), 'wb') do |file|
           file.write(uploaded_io.read)
           end
+      redirect_to root_url
+      flash[:success] = "File uploaded"
    end
 
    def index
@@ -20,6 +22,8 @@ class DatafilesController < ApplicationController
       File.open(Rails.root.join('public', 'uploads', current_user.email, uploaded_io.original_filename), 'wb') do |file|
       		file.write(uploaded_io.read)
   	 end
+      redirect_to root_url
+      flash[:success] = "File uploaded"
    end
 
    private
