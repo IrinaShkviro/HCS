@@ -51,7 +51,7 @@
 
 <% end %>
 
-<% if signed_in? && (current_user.id = @user.id) %>
+<% if signed_in? && (current_user.id == @user.id) %>
 
 <p>
 <%= f.label :password %>

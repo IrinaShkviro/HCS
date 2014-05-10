@@ -18,14 +18,16 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+     @user = User.find(params[:id])
+     if (signed_in? and (current_user.admin? or current.user.id == @user.id))
 
-    if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
-      redirect_to users_path
-    else
-      render 'edit'
-    end
+	    if @user.update_attributes(user_params)
+	      flash[:success] = "Profile updated"
+	      redirect_to users_path
+	    else
+	      render 'edit'
+	    end
+     end
   end
 
   def create
@@ -53,7 +55,7 @@ class UsersController < ApplicationController
           @user.destroy
 	  flash[:success] = "User deleted."
 	  redirect_to users_url
-          Dir.rmdir "#{Dir.pwd}/public/uploads/#{@user.email}"
+          FileUtils.remove_dir "#{Dir.pwd}/public/uploads/#{@user.email}", true
       end
   end
 
